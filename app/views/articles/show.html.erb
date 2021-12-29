@@ -1,0 +1,7 @@
+<h1>Show page</h1>
+<%= @article.title %>
+<%= @article.body %>
+<ul>
+<li><%=link_to "Edit" ,edit_article_path(@article) %></li>
+<li><%=button_to "Delete" ,article_path(@article),method: :delete%></li>
+</ul>
