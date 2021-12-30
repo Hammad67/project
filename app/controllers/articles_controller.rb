@@ -4,13 +4,15 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article=Article.new()
+    @article=current_user.articles.build
   end
 
   def create
-    @article=Article.create(article_params)
+    @article=current_user.articles.build(article_params)
     if @article.save
-      redirect_to root_path
+      
+      
+      redirect_to @article
     else
       render 'new'
     end
@@ -21,7 +23,10 @@ class ArticlesController < ApplicationController
   def destroy
     @article=Article.find(params[:id])
     @article.destroy
-    redirect to @article
+    redirect_to @article
+  end
+  def show
+    @article=Article.find(params[:id])
   end
   def update
     @article=Article.find(params[:id])
@@ -33,6 +38,6 @@ class ArticlesController < ApplicationController
     end
 
   def article_params
-    params.require(:article).permit(:title,:body)
+    params.require(:article).permit(:title, :body)
   end
 end

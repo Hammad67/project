@@ -2,6 +2,12 @@
 <%= @article.title %>
 <%= @article.body %>
 <ul>
-<li><%=link_to "Edit" ,edit_article_path(@article) %></li>
-<li><%=button_to "Delete" ,article_path(@article),method: :delete%></li>
+
+<%if user_signed_in?%>
+  <%if current_user.id==@article.user_id%>
+    <li><%=link_to "Edit" ,edit_article_path(@article) %></li>
+    <li><%=button_to "Delete" ,article_path(@article),method: :delete%></li>
+    <%end%>
+<%end%>
+
 </ul>

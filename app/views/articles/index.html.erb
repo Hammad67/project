@@ -1,21 +1,22 @@
-<h1>Home page</h1>
+<h1>All Articles</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-  </tr>
-  <% @article.each do |data| %>
+
+
+
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-      <td>Title</td>
-
-      <td><%= data.title %></td>
+      <th scope="col">Posts</th>
+      
     </tr>
+  </thead>
+  <tbody>
     <tr>
-       <td>body</td>
-    <td><%= data.body %></td>
+     
+        <% @article.each do |data| %>
+       <td><%= link_to data.title ,data %></td>
+      
     </tr>
-
-  <% end %>
-</table>
-<%=link_to"New Article",new_article_path %>
+      <% end %>
+    </tbody>
+    </table>
