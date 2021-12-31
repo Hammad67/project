@@ -1,7 +1,12 @@
 class ArticlesController < ApplicationController
+
+  respond_to :js, :json, :html
   def index
     @article=Article.all()
   end
+
+
+
 
   def new
     @article=current_user.articles.build
@@ -10,8 +15,8 @@ class ArticlesController < ApplicationController
   def create
     @article=current_user.articles.build(article_params)
     if @article.save
-      
-      
+
+
       redirect_to @article
     else
       render 'new'

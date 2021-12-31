@@ -14,11 +14,15 @@
   <tr>
     <td><%= @article.title %></td>
     <td><%= @article.body %></td>
+    <%= form_with model: [ @article, @article.likes.build ] do |form| %>
+      <p>
 
+        <%= form.submit %>
+      </p>
+    <% end %>
   </tr>
   </tbody>
  </table>
-
 
 <ul>
 
