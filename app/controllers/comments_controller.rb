@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  def index
+    @comment=@article.comments.all
+  end
   def new
     @comment = current_user.comment.build
   end

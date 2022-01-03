@@ -5,12 +5,14 @@
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
-
   <div>
-    <%= form.label :body %><br>
     <%= form.rich_text_area :body %>
+
   </div>
 
+  <div class="form_field">
+    <%= form.file_field :image %>
+  </div>
 
   <div>
     <%= form.submit %>

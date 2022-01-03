@@ -1,0 +1,8 @@
+<%= search_form_for @q do |f| %>
+
+  # Search if the name field contains...
+  <%= f.label :Searchwithtitle%>
+<%= f.search_field :title_cont %>
+
+  <%= f.submit %>
+<% end %>

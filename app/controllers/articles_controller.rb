@@ -1,8 +1,16 @@
 class ArticlesController < ApplicationController
 
- 
+
   def index
-    @article=Article.all
+
+
+    @q =Article.ransack(params[:q])
+
+    @article = @q.result(distinct: true)
+
+    #@q.result.includes(:articles).page(params[:page])
+    @article=Article.paginate(page:params[:page])
+
   end
 
 
@@ -44,6 +52,6 @@ class ArticlesController < ApplicationController
     end
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :image)
   end
 end

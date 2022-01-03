@@ -1,7 +1,5 @@
 <h1>Show page</h1>
 
-
-attachment attachment--preview attachment--png
 <table class="table table-dark">
   <thead>
   <tr>
@@ -13,11 +11,16 @@ attachment attachment--preview attachment--png
   <tbody>
   <tr>
     <td><%= @article.title %></td>
-    <td><%= @article.body %></td>
   </tr>
   </tbody>
  </table>
-
+    <div class="container">
+     <%if @article.image.present? %>
+        <p>
+      <%=image_tag (@article.image) %>
+        </p>
+    </div>
+        <%end %>
 <ul>
 
 <%if user_signed_in?%>
@@ -28,9 +31,11 @@ attachment attachment--preview attachment--png
 <%end%>
 
 </ul>
-        <button class="Like"><%= @likes_count %> Like</button>
+      <button class="Like"><%= @likes_count %> Like</button>
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
+      <%@comment=@article.comments.paginate(page: params[:page])%>
+<% @comment.each do |comment| %>
+
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -41,6 +46,7 @@ attachment attachment--preview attachment--png
     <%= comment.body %>
   </p>
 
+
   <%if user_signed_in?%>
     <% if current_user && current_user== comment.user %>
   <%= link_to 'Edit Comment',edit_article_comment_path(comment.article , comment)%>
@@ -49,7 +55,13 @@ attachment attachment--preview attachment--png
               data: { confirm: "Are you sure?" } %>
     <%end%>
   <%end%>
+
+
+
   <%end %>
+
+      <%= will_paginate @comment %>
+
 <h2>Add a comment:</h2>
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
   <p>
@@ -63,6 +75,8 @@ attachment attachment--preview attachment--png
   <p>
     <%= form.submit %>
   </p>
+
+
 <% end %>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>

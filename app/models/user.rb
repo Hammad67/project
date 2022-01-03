@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  acts_as_voter
+
   has_many :articles
   has_many :comments
   has_many :likes
