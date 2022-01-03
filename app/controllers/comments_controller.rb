@@ -21,11 +21,6 @@ class CommentsController < ApplicationController
 
 def edit
   @article = Article.find(params[:article_id])
-  puts "+++++++++++++++++ COMMENTS PRESENT: #{@article.comments.present?}"
-  @article.comments.each do |comment|
-    puts comment.id
-    puts '++++++++++++++++++='
-  end
   @comment = @article.comments.find(params[:id])
 end
 
@@ -33,6 +28,7 @@ def update
   @article = Article.find(params[:article_id])
   @comment = @article.comments.find(params[:id])
   @comment.update(comments_params)
+  redirect_to @article
 
 end
 

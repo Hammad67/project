@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
 
-  respond_to :js, :json, :html
+ 
   def index
-    @article=Article.all()
+    @article=Article.all
   end
 
 
@@ -32,6 +32,7 @@ class ArticlesController < ApplicationController
   end
   def show
     @article=Article.find(params[:id])
+    @likes_count = Like.where(article_id: params[:id]).count
   end
   def update
     @article=Article.find(params[:id])
