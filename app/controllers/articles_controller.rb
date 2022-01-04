@@ -2,27 +2,9 @@
 
 
     def index
-
-
       @q =Article.ransack(params[:q])
-      @article = @q.result(distinct: true)
-      # @article=Article.paginate(page:params[:page])
-      #@article = Article.search(params[:search])
-      #if @article.present?
-      # puts "present"
-      #else
-      #puts "Not present"
-      #@article=Article.all
-
-      # end
-
-
-
+      @article = @q.result(distinct: true).paginate(page:params[:page])
     end
-
-
-
-
     def new
       @article=current_user.articles.build
     end
@@ -30,8 +12,6 @@
     def create
       @article=current_user.articles.create(article_params)
       if @article.save
-
-
         redirect_to @article
       else
         render 'new'
@@ -57,8 +37,7 @@
       render :new
       end
       end
-
     def article_params
-      params.require(:article).permit(:title, :image)
+      params.require(:article).permit(:title, :image, :body)
     end
   end

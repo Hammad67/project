@@ -1,12 +1,4 @@
 <h1>All Articles</h1>
-<%#=form_tag articles_path ,method: :get do%>
-
-  <%#=text_field_tag(:search,params[:search]) %>
-  <%#=submit_tag("Search") %>
-<%#end %>
-
-
-
 <%=render 'articles/searchform' %>
 <table class="table">
   <thead class="thead-dark">
@@ -18,23 +10,17 @@
   <tbody>
   </tbody>
 </table>
+<div class="row">
 <% @article.each do |data| %>
-  <div style="float:left;margin-left:20px">
-      <h3><%= link_to data.title ,data %></h3>
+  <div style="float:left;max-width:250px;margin-left:20px">
+    <h3><%= link_to data.title ,data %></h3>
+    <%if data.image.present? %>
+      <%=image_tag (data.image), style:"height:300px; width:200px" %>
+      <%end %>
+  </div>
+<% end %>
+</div>
+<div>
+<%= will_paginate(@article) %>
+</div>
 
-
-
-
-
-        <%if data.image.present? %>
-
-
-
-      
-      <%=image_tag (data.image) %>
-
-          </div>
-        <%end %>
-
-
-      <% end %>

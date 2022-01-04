@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   has_one_attached :image
   self.per_page=2
 
-  #def self.search(search)
-  # Article.where("title LIKE ?", "%#{search}%")
-  #end
+  def self.search(search)
+    Article.where("title LIKE ?", "%#{search}%")
+  end
   end

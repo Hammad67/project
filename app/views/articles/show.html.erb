@@ -11,15 +11,16 @@
   <tbody>
   </tbody>
  </table>
-    <div class="container">
      <%if @article.image.present? %>
+    <div class="container">
         <p>
-
-          <%= image_tag (@article.image)%>
-
+          <%= image_tag (@article.image) , style:"height:450px; width:330px"%>
         </p>
     </div>
-        <%end %>
+    <%end %>
+    <div>
+    <%= @article.body %>
+    </div>
 
       <button class="Like btn btn-info"><%= @likes_count %> Like</button>
 <%if user_signed_in?%>
