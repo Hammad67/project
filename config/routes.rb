@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :articles do
     resources :likes
     resources :comments
-    end
+  end
+  get '/search', to: 'articles#search'
 end

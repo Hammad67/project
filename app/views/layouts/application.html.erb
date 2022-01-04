@@ -40,24 +40,23 @@
           <li class="nav-item">
             <a class="nav-link" href="/users/sign_up">Sign-up</a>
           </li>
-
           <%if user_signed_in? %>
-          <li class="nav-item">
-            <%= button_to"Signout",destroy_user_session_path, method: :delete %>
-          </li>
-            <% end %>>
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/new">Add Article</a>
+            </li>
+          <%end %>
 
-           <%if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/articles/new">Add Article</a>
-          </li>
-             <%end %>
-         <li class="nav-item">
-           
-          </li>
+
+
         </ul>
       </div>
     </div>
+    <%if user_signed_in? %>
+      <div>
+        <%= button_to"Signout",destroy_user_session_path, method: :delete ,class:"btn btn-danger"%>
+      </div>
+    <% end %>
+
   </nav>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
