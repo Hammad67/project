@@ -1,0 +1,16 @@
+<%= form_with model: @article.article_categories.build do |f| %>
+
+  <div class="form-group">
+    <%= f.label :Categoryname %><br/>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <!--  <div class="form-group">-->
+  <%#= f.select :type_id, @types.map { |t| [t.name, t.slug]}, {}, class: "form-control" %>
+  <!--  </div>-->
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

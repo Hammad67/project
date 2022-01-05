@@ -1,6 +1,6 @@
 <h1>New Article</h1>
 
-<%= form_with model: @article do |form| %>
+<%= form_with model: [@article,@category] do |form| %>
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -13,7 +13,9 @@
   <div class="form_field">
     <%= form.file_field :image %>
   </div>
+   <div>
 
+   </div>
   <div>
     <%= form.submit %>
   </div>
