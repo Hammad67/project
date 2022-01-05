@@ -1,6 +1,6 @@
 <h1>New Article</h1>
 
-<%= form_with model: [@article,@category] do |form| %>
+<%= form_with model: @article do |form| %>
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -13,10 +13,16 @@
   <div class="form_field">
     <%= form.file_field :image %>
   </div>
-   <div>
-
-   </div>
+    <div class="form-group">
+    <%= form.select :category_ids, options_for_select(Category.all.collect{ |e| [e.name, e.id] }),{ :prompt => "Please select"},multiple: true, size: 10 %>
+  
+    
+  </div>
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

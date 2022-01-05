@@ -1,6 +1,5 @@
   class ArticlesController < ApplicationController
 
-
     def index
       @q =Article.ransack(params[:q])
       @article = @q.result(distinct: true).paginate(page:params[:page])
@@ -12,6 +11,20 @@
     def create
       @article=current_user.articles.create(article_params)
       if @article.save
+        if params[:article][:category_ids].present?
+          category_ids = params[:article][:category_ids]
+          category_ids.each do|n|
+            if n.present?
+              @article_cat = ArticleCategory.new()
+              @article_cat.category_id = n
+              @article_cat.article_id = @article.id
+              @article_cat.save
+            end
+          end
+        end
+
+
+        
         redirect_to @article
       else
         render 'new'

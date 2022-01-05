@@ -7,9 +7,13 @@ class CategoriesController < ApplicationController
   end
   def create
     @category=Category.create(category_params)
+    if @category.save
+      redirect_to @category
+    else
+      render "new"
   end
-
+end
   def category_params
-    params.require(:categories).permit(:name)
+    params.require(:category).permit(:name)
   end
 end

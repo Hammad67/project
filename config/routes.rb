@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :likes
     resources :comments
   end
+  resources :categories
   get '/search', to: 'articles#search'
 end
