@@ -1,12 +1,10 @@
-<%= form_with model: @category do |form| %>
+<%=@category.name %>
+<h1>Assign Article to this Category</h1>
+<%= form_with model: [@category,@category.article_categories.build] do |form| %>
   <div>
-    <%= form.label :Name %><br>
-    <%= form.text_field :name %>
-
     <div class="form-group">
       <%= form.select :article_ids, options_for_select(Article.all.collect{ |e| [e.title, e.id] }),{ :prompt => "Please select Articles"},multiple: true, size: 3 %>
     </div>
     <%= form.submit class:"btn btn-success"%>
-    <%end%>
-  </div>
-
+<%end%>
+</div>

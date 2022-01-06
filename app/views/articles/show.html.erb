@@ -2,10 +2,16 @@
 <table class="table table-dark">
   <thead>
   <tr>
-    <th scope="col">Title</th>
-    <td><%= @article.title %></td>
-
+    <th scope="col">Title
+    <td><%= @article.title %></td></th>
   </tr>
+  <tr><td><strong>Categories</strong></td></tr>
+  <%@c.each do|n| %>
+
+    <% t=Category.find(n.category_id) %>
+    <tr>
+      <td><%= t.name%></td>
+    <% end %></tr>
   </thead>
 
   <tbody>
@@ -19,7 +25,7 @@
     </div>
     <%end %>
     <div>
-    <%= @article.body %>
+    <p><%= @article.body %></p>
     </div>
 
       <button class="Like btn btn-info"><%= @likes_count %> Like</button>
