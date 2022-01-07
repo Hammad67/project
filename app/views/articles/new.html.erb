@@ -1,9 +1,22 @@
 <h1>New Article</h1>
 
-<%= form_with model: @article do |form| %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= simple_form_for @article do |form| %>
   <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.input :title %>
   </div>
   <div>
     <%= form.rich_text_area :body %>
@@ -19,7 +32,7 @@
 
 
   <div>
-    <%= form.submit class:"btn btn-info"%>
+    <%= form.button :submit,class:"btn btn-info"%>
   </div>
 <% end %>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

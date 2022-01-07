@@ -1,5 +1,21 @@
 <h1>All Articles</h1>
+
+
 <%=render 'articles/searchform' %>
+
+  <% @article.each do |data| %>
+    <div style="float:left;max-width:250px;margin-left:20px">
+      <h3><%= link_to data.title ,data %></h3>
+      <%if data.image.present? %>
+        <%=image_tag (data.image), style:"height:300px; width:200px" %>
+      <%end %>
+    </div>
+  <% end %>
+
+
+
+
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -10,16 +26,20 @@
   <tbody>
   </tbody>
 </table>
-<div class="row">
-<% @article.each do |data| %>
-  <div style="float:left;max-width:250px;margin-left:20px">
-    <h3><%= link_to data.title ,data %></h3>
-    <%if data.image.present? %>
-      <%=image_tag (data.image), style:"height:300px; width:200px" %>
-      <%end %>
-  </div>
-<% end %>
-</div>
+<!--<div class="row">-->
+<%#@c.each do |n| %>
+  <%#if n.present? %>
+    <%#@article=Article.find(n.article_id) %>
+<!--        <div style="float:left;max-width:250px;margin-left:20px">-->
+<!--          <h3><%#= link_to @article.title ,(@article) %></h3>-->
+          <%#if @article.image.present? %>
+            <%#=image_tag (@article.image), style:"height:300px; width:200px" %>
+          <%#end %>
+<!--        </div>-->
+      <%# end %>
+    <%#end%>
+
+
 <div>
 <%= will_paginate(@article) %>
 </div>

@@ -1,9 +1,18 @@
   class ArticlesController < ApplicationController
 
     def index
-      @q =Article.ransack(params[:q])
-      @article = @q.result(distinct: true).paginate(page:params[:page])
+       category_id1=params[:category_id]
+     if   category_id1.present?
+         puts "#{category_id1 }"
+         #@article= Article.joins(:article_categories).where("category_id=#{params[:category_id]}")
+         @article= Article.joins(:article_categories).where("category_id=category_id1")
+    else
+         @q =Article.ransack(params[:q])
+         @article = @q.result(distinct: true).paginate(page:params[:page])
     end
+
+    end
+
     def new
       @article=current_user.articles.build
     end

@@ -9,16 +9,15 @@ class CategoriesController < ApplicationController
     @category=Category.create(category_params)
 
 
-
-    article_ids= params[:category][:article_ids]
-      article_ids.each do|f|
-        if f.present?
-        @article_category=ArticleCategory.new
-        @article_category.article_id=f
-        @article_category.category_id=@category.id
-        @article_category.save
-      end
-    end
+    #
+    # article_ids= params[:category][:article_ids]
+    #   article_ids.each do|f|
+    #     if f.present?
+    #     @article_category=ArticleCategory.new
+    #     @article_category.article_id=f
+    #     @article_category.category_id=@category.id
+    #     @article_category.save
+    #   end
     if @category.save
       redirect_to @category
     else

@@ -82,17 +82,15 @@
       <%= will_paginate @comment %>
 
 <h2>Add a comment:</h2>
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<%= simple_form_for [ @article, @article.comments.build ] do |form| %>
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
+    <%= form.input :commenter %>
   </p>
   <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+    <%= form.input :body %>
   </p>
   <p>
-    <%= form.submit class:"btn btn-info"%>
+    <%= form.button :submit,class:"btn btn-info"%>
   </p>
 
 
