@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   has_many :article_categories
-  has_many :categories,through: :article_categories
+  has_many :categories,:through => :article_categories
   has_rich_text :body
   belongs_to :user
   has_many :comments

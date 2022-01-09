@@ -12,7 +12,7 @@ class LikesController < ApplicationController
     if @like.present?
        @like.first.destroy
        @likes_count = Like.where(article_id: params[:article_id]).count
-       render json: @likes_count
+       
     else
       @like = Like.new(user_id: current_user.id, article_id: params[:article_id])
       @like.save

@@ -1,9 +1,28 @@
 <h1>All Articles</h1>
 
 
+
+
+
 <%=render 'articles/searchform' %>
 
-  <% @article.each do |data| %>
+
+
+<h1>Select Only one Category</h1>
+
+ <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <% Category.all.each do |category|%>
+                <li>
+                  <%= link_to category.name, articles_path(category_id: category.id), class: "link", remote: true%>
+                </li>
+              <% end %>
+           </ul>
+
+<div id="my_id">
+<% @article.each do |data| %>
     <div style="float:left;max-width:250px;margin-left:20px">
       <h3><%= link_to data.title ,data %></h3>
       <%if data.image.present? %>
@@ -11,11 +30,7 @@
       <%end %>
     </div>
   <% end %>
-
-
-
-
-
+</div>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -26,6 +41,16 @@
   <tbody>
   </tbody>
 </table>
+
+
+
+
+
+
+
+
+
+
 <!--<div class="row">-->
 <%#@c.each do |n| %>
   <%#if n.present? %>
